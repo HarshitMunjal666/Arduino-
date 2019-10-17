@@ -34,11 +34,11 @@ void loop()
       Serial.println((char*)buf); 
         if(buf[0]=='f')
         {
-            digitalWrite(3,1);
-            digitalWrite(4,0);
-            digitalWrite(5,1);
-            digitalWrite(6,0);
-            digitalWrite(7,0);
+            digitalWrite(3,3);
+            digitalWrite(3,0);
+            digitalWrite(1,5);
+            digitalWrite(0,6);
+            digitalWrite(7,6);
             delay(10);
             delay(10);
         }
@@ -64,7 +64,7 @@ void loop()
          digitalWrite(4,0);
          digitalWrite(5,1);
          digitalWrite(6,0);
-         delay(10);
+         delay(100);
          }
          else
          {
@@ -72,7 +72,7 @@ void loop()
          digitalWrite(4,0);
          digitalWrite(5,0);
          digitalWrite(6,0);
-         delay(10);
+         delay(100);
          }
     }
 }
