@@ -31,13 +31,7 @@ void loop()
       Serial.print("Message Received: ");
       Serial.println((char*)buf); 
         if(buf[0]=='f')
-        {
-            digitalWrite(4,0);
-            digitalWrite(6,0);
-            digitalWrite(7,0);
-            delay(10);
-            delay(10);
-        }
+        
         else if(buf[0]=='b')
         {
          digitalWrite(3,0);
@@ -57,16 +51,14 @@ void loop()
          digitalWrite(3,0);
          digitalWrite(4,0);
          digitalWrite(5,1);
-         
-         delay(10);
-         }
+
          else
          {
          digitalWrite(3,0);
          digitalWrite(4,0);
          digitalWrite(5,0);
          digitalWrite(6,0);
-         delay(10);
+         delay(100);
          }
     }
 }
