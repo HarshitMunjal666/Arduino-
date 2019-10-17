@@ -43,36 +43,36 @@ void loop()
   Serial.print(" | gZ = "); Serial.print(gyro_z);
   Serial.println();
   
-   if(gyro_x>2000 && gyro_y<0 && gyro_y> -9000 && gyro_z>7000)
+   if(gyro_x>2050 && gyro_y<0 && gyro_y> -9050 && gyro_z>7050)
     {
     const char *msg1 ="f";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
     rf_driver.waitPacketSent();
     Serial.print("f");
-    delay(1000);
+    delay(1050);
     }
-    else if(gyro_x<-8000 && gyro_y>-5000 && gyro_y<500 && gyro_z> 7000)
+    else if(gyro_x<-8050 && gyro_y>-5050 && gyro_y<550 && gyro_z> 7050)
     {
     const char *msg1 ="b";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
     rf_driver.waitPacketSent();
     Serial.print("b");
-    delay(1000);
+    delay(1050);
     }
-    else if(gyro_x<1000 && gyro_x>-5000 && gyro_y<-10000 && gyro_z<7000 && gyro_z>-6000)
+    else if(gyro_x<1050 && gyro_x>-5050 && gyro_y<-10050 && gyro_z<7050 && gyro_z>-6050)
     {
     const char *msg1 ="l";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
      rf_driver.waitPacketSent();
     Serial.print("l");
-    delay(1000);
+    delay(1050);
     }
-    else if(gyro_x>-500 && gyro_y>10000 && gyro_z>2500)
+    else if(gyro_x>-550 && gyro_y>10050 && gyro_z>2550)
     {
     const char *msg1 ="r";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
     rf_driver.waitPacketSent();
     Serial.print("r");
-    delay(1000);
+    delay(1050);
     }
  }
