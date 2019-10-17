@@ -1,3 +1,4 @@
+
 #include <RH_ASK.h>
 // Include dependant SPI Library 
 #include <SPI.h> 
@@ -43,36 +44,102 @@ void loop()
   Serial.print(" | gZ = "); Serial.print(gyro_z);
   Serial.println();
   
-   if(gyro_x>2050 && gyro_y<0 && gyro_y> -9050 && gyro_z>7050)
+   if(gyro_x>2000 && gyro_y<0 && gyro_y> -9000 && gyro_z>7000)
     {
     const char *msg1 ="f";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
     rf_driver.waitPacketSent();
     Serial.print("f");
-    delay(1050);
+    delay(1000);
     }
-    else if(gyro_x<-8050 && gyro_y>-5050 && gyro_y<550 && gyro_z> 7050)
+    else if(gyro_x<-8000 && gyro_y>-5000 && gyro_y<500 && gyro_z> 7000)
     {
     const char *msg1 ="b";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
     rf_driver.waitPacketSent();
     Serial.print("b");
-    delay(1050);
+    delay(1000);
     }
-    else if(gyro_x<1050 && gyro_x>-5050 && gyro_y<-10050 && gyro_z<7050 && gyro_z>-6050)
+    else if(gyro_x<1000 && gyro_x>-5000 && gyro_y<-10000 && gyro_z<7000 && gyro_z>-6000)
     {
     const char *msg1 ="l";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
      rf_driver.waitPacketSent();
     Serial.print("l");
-    delay(1050);
+    delay(1000);
     }
-    else if(gyro_x>-550 && gyro_y>10050 && gyro_z>2550)
+    else if(gyro_x>-500 && gyro_y>10000 && gyro_z>2500)
     {
     const char *msg1 ="r";
     rf_driver.send((uint8_t *)msg1, strlen(msg1));
     rf_driver.waitPacketSent();
     Serial.print("r");
-    delay(1050);
+    delay(1000);
     }
  }
+=======
+#include <RH_ASK.h>
+// Include dependant SPI Library 
+#include <SPI.h> 
+ 
+// Create Amplitude Shift Keying Object
+RH_ASK rf_driver;
+
+   
+void setup()
+{
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+  pinMode(6,OUTPUT);
+  pinMode(7,OUTPUT);
+    // Initialize ASK Object
+    rf_driver.init();
+    // Setup Serial Monitor
+    Serial.begin(9600);
+}
+ 
+void loop()
+{
+      // Set buffer to size of expected message
+    uint8_t buf[2];
+    uint8_t buflen = sizeof(buf);
+    // Check if received packet is correct size
+    if (rf_driver.recv(buf, &buflen))
+    {
+      
+      // Message received with valid checksum
+      Serial.print("Message Received: ");
+      Serial.println((char*)buf); 
+        if(buf[0]=='f')
+        
+        else if(buf[0]=='b')
+        {
+         digitalWrite(3,0);
+         digitalWrite(6,1);
+         delay(10); 
+         }
+         else if(buf[0]=='r')
+         {
+         digitalWrite(3,1);
+         digitalWrite(4,0);
+         digitalWrite(5,0);
+         digitalWrite(6,0);
+         delay(10);
+         }
+         else  if(buf[0]=='l')
+         {
+         digitalWrite(3,0);
+         digitalWrite(4,0);
+         digitalWrite(5,1);
+
+         else
+         {
+         digitalWrite(3,0);
+         digitalWrite(4,0);
+         digitalWrite(5,0);
+         digitalWrite(6,0);
+         delay(100);
+         }
+    }
+}
+
